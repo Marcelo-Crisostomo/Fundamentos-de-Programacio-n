@@ -1,0 +1,9 @@
+Informe de Ventas - Cafetería De Grano
+
+Pan ciabatta: 20 unidades vendidas, total: $40000
+Pie de limón: 333 unidades vendidas, total: $1165500
+Café: 4444 unidades vendidas, total: $9776800
+Té: 555 unidades vendidas, total: $888000
+Alfajor: 3344 unidades vendidas, total: $3344000
+
+Total de ventas del día: $15214300
