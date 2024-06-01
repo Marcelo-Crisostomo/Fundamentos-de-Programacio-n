@@ -1,5 +1,4 @@
-"""generame una clase completa para 1:20 minutos de clase que explique en detalle los diccionarios en python su uso, principales funciones o metodos
-  ejemplos con código comentado dentro del mismo código"""
+
 # Definición de un set
 mi_set = {1, 2, 3, 4, 5}
 
@@ -8,7 +7,7 @@ print(mi_set)
 """Creación de Sets:
 
 Usando llaves {}.
-Usando la función set().
+Usando la función set()
 Acceso a Elementos:
 
 No se puede acceder a elementos por índice.
