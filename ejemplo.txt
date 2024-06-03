@@ -1,0 +1,1 @@
+Este es un archivo de texto de ejemplo.
