@@ -116,4 +116,4 @@ palabra = input("Ingrese la palabra a buscar en el archivo: ")
 apariciones = buscar_palabra(contenido_archivo, palabra)
 
 # Imprime el número de apariciones de la palabra en el archivo
-print(f"La palabra '{palabra}' aparece {apariciones} veces en el archivo {nombre_archivo}.")
+print(f"La palabra '{palabra}' aparece {apariciones} veces en el archivo {nombre_archivo}.") 
