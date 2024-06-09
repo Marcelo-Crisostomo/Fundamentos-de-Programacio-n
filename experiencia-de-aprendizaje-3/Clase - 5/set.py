@@ -4,7 +4,7 @@ mi_set = {1, 2, 3, 4, 5}
 
 # Imprimir el set
 print(mi_set)
-"""Creación de Sets:
+"""Creación de Sets:*9+6.0
 
 Usando llaves {}.
 Usando la función set()

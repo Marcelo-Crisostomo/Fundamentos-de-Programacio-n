@@ -110,64 +110,50 @@ for fila in leer_archivo_csv('ejemplo.csv'):
 print("\nContenido del archivo JSON:")
 print(json.dumps(leer_archivo_json('ejemplo.json'), indent=4))
 
-# Contenido adicional para el archivo de texto
-contenido_adicional_txt = "\nEste es un contenido adicional."
-# Agregar contenido al archivo de texto existente
+contenido_adicional_txt ="\n Estes es contenido adicional"
+
 agregar_contenido_txt('ejemplo.txt', contenido_adicional_txt)
 
-# Leer y mostrar el contenido actualizado del archivo de texto
-print("\nContenido actualizado del archivo de texto:")
 print(leer_archivo_txt('ejemplo.txt'))
 
-# Métodos adicionales para leer archivos
-# Leer todo el contenido del archivo de una vez
-with open('ejemplo.txt', 'r') as fichero:
-    print("\nContenido leído con read():")
+#Métodos adicionales para leer archivos.
+with open("ejemplo.txt", "r") as fichero:
+    print("\n Contenido leído con read()")
     print(fichero.read())
 
-# Leer el archivo línea por línea usando readline()
+#Leer archivo línea por línea
 with open('ejemplo.txt', 'r') as fichero:
     linea = fichero.readline()
-    while linea != '':
+    while linea != "":
         print(linea, end='')
         linea = fichero.readline()
 
-# Leer el archivo línea por línea usando readlines()
-with open('ejemplo.txt', 'r') as fichero:
-    print("\nContenido leído con readlines():")
-    for linea in fichero.readlines():
-        print(linea, end='')
+#readlines()
 
-# Escribir en un archivo usando write() y writelines()
-lista = ["Manzana\n", "Pera\n", "Plátano\n"]
-# Abre el archivo en modo escritura ('w')
+with open('ejemplo.txt', 'r') as fichero:
+    print("readlines()")
+    for linea in fichero.readlines():
+        print(linea, end="")
+
+#escribir un archivo usando write() y writelines()
+lista = ["Manzanita\n", "Perita\n", "Platanito\n"]
 with open('datos_guardados.txt', 'w') as fichero:
-    # Escribe la lista de elementos en el archivo
     fichero.writelines(lista)
 
-# Ejemplo de comunicación entre dos funciones usando archivos
+#Comunicación emntre 2 funciones usando archivos
 def escribe_fichero(mensaje):
-    """Escribe un mensaje en un fichero."""
-    # Abre el archivo en modo escritura ('w')
     with open('fichero_comunicacion.txt', 'w') as fichero:
-        # Escribe el mensaje en el archivo
         fichero.write(mensaje)
 
+#función para leer el fichero
 def lee_fichero():
-    """Lee un mensaje de un fichero y lo devuelve."""
-    # Abre el archivo en modo lectura ('r')
     with open('fichero_comunicacion.txt', 'r') as fichero:
-        # Lee el mensaje del archivo
         mensaje = fichero.read()
-    # Borra el contenido del archivo abriéndolo en modo escritura ('w')
     with open('fichero_comunicacion.txt', 'w') as fichero:
         fichero.write('')
-    # Devuelve el mensaje leído
     return mensaje
 
-# Usar las funciones de comunicación
-# Escribe un mensaje en el archivo
-escribe_fichero("Esto es un mensaje")
-# Lee y muestra el mensaje del archivo
-print("\nMensaje leído del fichero de comunicación:")
+escribe_fichero("Este es un mensaje para el fichero")
+print("\n mensaje leído del fichero de comunicación")
 print(lee_fichero())
+
