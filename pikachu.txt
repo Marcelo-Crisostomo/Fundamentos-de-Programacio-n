@@ -1,0 +1,3 @@
+Nombre: pikachu
+Número: 25
+Tipos: electric
