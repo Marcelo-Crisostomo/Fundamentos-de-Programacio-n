@@ -1,119 +1,172 @@
-# Función para escribir en un archivo
-def escribir_archivo(nombre_archivo, contenido):
+# Función que recibe una cantidad variable de argumentos (*args)
+def suma_multiple(*args):
     """
-    Esta función toma dos argumentos: el nombre del archivo y
-    el contenido a escribir. Escribe el contenido en el archivo
-    especificado.
+    Esta función recibe una cantidad variable de números y devuelve su suma.
     """
-    try:
-        with open(nombre_archivo, 'w') as archivo:
-            archivo.write(contenido)
-        print(f"Contenido escrito en {nombre_archivo}")
-    except IOError:
-        print("Error: No se pudo escribir en el archivo.")
+    suma_total = 0
+    for numero in args:
+        suma_total += numero
+    return suma_total
 
-# Función para leer un archivo
-def leer_archivo(nombre_archivo):
+# Llamada a la función suma_multiple con varios argumentos
+resultado_multiple = suma_multiple(1, 2, 3, 4, 5)
+print(f"La suma de 1, 2, 3, 4 y 5 es {resultado_multiple}")
+
+# Función que recibe una cantidad variable de argumentos con nombre (**kwargs)
+def saludo_completo(**kwargs):
     """
-    Esta función toma el nombre de un archivo como argumento,
-    lo lee y retorna su contenido.
+    Esta función recibe una cantidad variable de argumentos con nombre y los usa para imprimir un saludo personalizado.
     """
-    try:
-        with open(nombre_archivo, 'r') as archivo:
-            contenido = archivo.read()
-        return contenido
-    except FileNotFoundError:
-        return "Error: Archivo no encontrado."
+    saludo = "Hola"
+    for key, value in kwargs.items():
+        saludo += f" {value}"
+    saludo += ", bienvenidos a la clase de funciones en Python"
+    print(saludo)
 
-# Función para contar palabras en un contenido
-def contar_palabras(contenido):
+# Llamada a la función saludo_completo con argumentos con nombre
+saludo_completo(nombre="Marcelo", apellido="González")
+
+# Función combinada que usa *args y **kwargs
+def informacion_completa(*args, **kwargs):
     """
-    Esta función toma una cadena de texto como argumento y
-    retorna el número de palabras en la cadena.
+    Esta función recibe una cantidad variable de argumentos y argumentos con nombre, y los imprime.
     """
-    palabras = contenido.split()
-    return len(palabras)
+    print("Información recibida:")
+    for arg in args:
+        print(f"Argumento: {arg}")
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
 
-# Función para validar la entrada del usuario
-def validar_entrada(mensaje):
+# Llamada a la función informacion_completa con varios tipos de argumentos
+informacion_completa(1, 2, 3, nombre="Marcelo", curso="Fundamentos de Programación")
+
+# Función que incluye procesamiento más complejo y devuelve varios valores
+def estadisticas(*args):
     """
-    Esta función toma una cadena como argumento que se utiliza
-    para solicitar la entrada del usuario. Retorna la entrada
-    validada.
+    Esta función recibe una cantidad variable de números y devuelve varias estadísticas: suma, promedio, máximo y mínimo.
     """
-    while True:
-        entrada = input(mensaje)
-        if entrada.strip():
-            return entrada
-        else:
-            print("Error: Entrada no válida. Intente nuevamente.")
+    suma_total = sum(args)
+    promedio = suma_total / len(args)
+    maximo = max(args)
+    minimo = min(args)
+    return suma_total, promedio, maximo, minimo
 
-# Solicita el nombre del archivo y el contenido al usuario con validación
-nombre_archivo = validar_entrada("Ingrese el nombre del archivo para escribir: ")
-contenido = validar_entrada("Ingrese el contenido a escribir en el archivo: ")
+# Llamada a la función estadisticas con varios números
+suma_total, promedio, maximo, minimo = estadisticas(10, 20, 30, 40, 50)
+print(f"Suma: {suma_total}, Promedio: {promedio}, Máximo: {maximo}, Mínimo: {minimo}")
 
-# Llama a la función escribir_archivo con los valores ingresados
-escribir_archivo(nombre_archivo, contenido)
-
-# Solicita el nombre del archivo al usuario para leer y validar la entrada
-nombre_archivo = validar_entrada("Ingrese el nombre del archivo a leer: ")
-
-# Llama a la función leer_archivo y guarda el contenido
-contenido_archivo = leer_archivo(nombre_archivo)
-
-# Verifica si el archivo fue leído correctamente
-if "Error" not in contenido_archivo:
-    # Llama a la función contar_palabras y guarda el resultado
-    numero_palabras = contar_palabras(contenido_archivo)
-    # Imprime el contenido del archivo y el número de palabras
-    print(f"Contenido de {nombre_archivo}:\n{contenido_archivo}")
-    print(f"El archivo {nombre_archivo} tiene {numero_palabras} palabras.")
-else:
-    # Imprime el mensaje de error si el archivo no fue encontrado
-    print(contenido_archivo)
-
-# Función adicional para contar líneas en un archivo
-def contar_lineas(contenido):
+# Función que recibe una lista y un diccionario y procesa ambos
+def procesar_datos(lista, diccionario):
     """
-    Esta función toma una cadena de texto como argumento y
-    retorna el número de líneas en la cadena.
+    Esta función recibe una lista y un diccionario, y procesa ambos de distintas maneras.
     """
-    lineas = contenido.split('\n')
-    return len(lineas)
+    print("Procesando lista:")
+    for elemento in lista:
+        print(f"Elemento: {elemento}")
+    
+    print("Procesando diccionario:")
+    for clave, valor in diccionario.items():
+        print(f"{clave}: {valor}")
 
-# Llama a la función contar_lineas y guarda el resultado
-numero_lineas = contar_lineas(contenido_archivo)
+# Llamada a la función procesar_datos con una lista y un diccionario
+lista_ejemplo = [1, 2, 3, 4, 5]
+diccionario_ejemplo = {"nombre": "Marcelo", "edad": 30}
+procesar_datos(lista_ejemplo, diccionario_ejemplo)
 
-# Imprime el número de líneas en el archivo
-print(f"El archivo {nombre_archivo} tiene {numero_lineas} líneas.")
-
-# Función para contar caracteres en un archivo
-def contar_caracteres(contenido):
+# Ejemplo de una función recursiva para calcular el factorial de un número
+def factorial(n):
     """
-    Esta función toma una cadena de texto como argumento y
-    retorna el número de caracteres en la cadena.
+    Esta función calcula el factorial de un número de manera recursiva.
     """
-    return len(contenido)
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
 
-# Llama a la función contar_caracteres y guarda el resultado
-numero_caracteres = contar_caracteres(contenido_archivo)
+# Llamada a la función factorial con el argumento 5
+resultado_factorial = factorial(5)
+print(f"El factorial de 5 es {resultado_factorial}")
 
-# Imprime el número de caracteres en el archivo
-print(f"El archivo {nombre_archivo} tiene {numero_caracteres} caracteres.")
-
-# Función para buscar una palabra en un archivo
-def buscar_palabra(contenido, palabra):
+# Función anidada: una función dentro de otra función
+def operacion_anidada(a, b):
     """
-    Esta función toma una cadena de texto y una palabra como argumentos,
-    y retorna el número de veces que la palabra aparece en la cadena.
+    Esta función contiene otra función dentro de ella que realiza una operación matemática.
     """
-    return contenido.lower().split().count(palabra.lower())
+    def suma(x, y):
+        return x + y
+    
+    def multiplicacion(x, y):
+        return x * y
 
-# Solicita una palabra al usuario
-palabra = input("Ingrese la palabra a buscar en el archivo: ")
+    resultado_suma = suma(a, b)
+    resultado_multiplicacion = multiplicacion(a, b)
 
-# Llama a la función buscar_palabra y guarda el resultado
-apariciones = buscar_palabra(contenido_archivo, palabra)
+    return resultado_suma, resultado_multiplicacion
 
-# Imprime el número de apariciones de la palabra en el archivo
-print(f"La palabra '{palabra}' aparece {apariciones} veces en el archivo {nombre_archivo}.") 
+# Llamada a la función operacion_anidada con argumentos 4 y 5
+resultado_suma, resultado_multiplicacion = operacion_anidada(4, 5)
+print(f"La suma de 4 y 5 es {resultado_suma} y la multiplicación es {resultado_multiplicacion}")
+
+# Ejemplo de función lambda para elevar al cuadrado una lista de números
+elevar_cuadrado = lambda x: x**2
+
+# Lista de números
+numeros = [1, 2, 3, 4, 5]
+
+# Uso de la función map con la función lambda
+numeros_cuadrados = list(map(elevar_cuadrado, numeros))
+print(f"Los números {numeros} elevados al cuadrado son {numeros_cuadrados}")
+
+# Ejemplo de uso de una función lambda en una función de orden superior
+def aplicar_funcion(func, lista):
+    """
+    Esta función recibe otra función y una lista, y aplica la función a cada elemento de la lista.
+    """
+    return [func(elemento) for elemento in lista]
+
+# Uso de la función aplicar_funcion con una función lambda para duplicar los números
+duplicar = lambda x: x * 2
+numeros_duplicados = aplicar_funcion(duplicar, numeros)
+print(f"Los números {numeros} duplicados son {numeros_duplicados}")
+
+# Función adicional 1: Uso de *args y **kwargs para operaciones matemáticas avanzadas
+def operaciones_avanzadas(operacion, *args, **kwargs):
+    """
+    Esta función realiza operaciones matemáticas avanzadas basadas en el tipo de operación y los argumentos proporcionados.
+    """
+    resultado = 0
+    if operacion == "suma":
+        resultado = sum(args)
+    elif operacion == "producto":
+        resultado = 1
+        for num in args:
+            resultado *= num
+    if kwargs.get('redondear'):
+        resultado = round(resultado, kwargs['decimales'])
+    return resultado
+
+# Llamada a la función operaciones_avanzadas
+resultado_suma_avanzada = operaciones_avanzadas("suma", 1, 2, 3, 4, 5, redondear=True, decimales=2)
+print(f"Resultado de suma avanzada: {resultado_suma_avanzada}")
+
+resultado_producto_avanzado = operaciones_avanzadas("producto", 1, 2, 3, 4, 5)
+print(f"Resultado de producto avanzado: {resultado_producto_avanzado}")
+
+# Función adicional 2: Aplicar múltiples funciones a una lista de valores
+def aplicar_multiples_funciones(lista, *funcs):
+    """
+    Esta función aplica múltiples funciones a una lista de valores y devuelve los resultados.
+    """
+    resultados = []
+    for func in funcs:
+        resultados.append([func(elemento) for elemento in lista])
+    return resultados
+
+# Funciones lambda para aplicar
+cuadrado = lambda x: x**2
+cubo = lambda x: x**3
+
+# Llamada a la función aplicar_multiples_funciones
+resultados_multiples = aplicar_multiples_funciones(numeros, cuadrado, cubo)
+print(f"Resultados aplicando cuadrado: {resultados_multiples[0]}")
+print(f"Resultados aplicando cubo: {resultados_multiples[1]}")
